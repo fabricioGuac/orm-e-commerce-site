@@ -116,8 +116,25 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
+    // Check if the id parameter contains only numeric characters
+  if (!/^\d+$/.test(req.params.id)) {
+    return res.status(400).json({ message: 'Invalid product ID.' });
+  }
   // delete one product by its `id` value
+  try {
+    const delCount = await Product.destroy({
+      where: {
+        id: req.params.id,
+      }
+    });
+    if(!delCount){
+      res.status(404).json({message: 'Product not found'})
+    return}
+    res.status(200).json(delCount);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
