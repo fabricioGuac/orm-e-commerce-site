@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Products
   // Check if the id parameter contains only numeric characters
   if (!/^\d+$/.test(req.params.id)) {
-    return res.status(400).json({ message: 'Invalid product ID.' });
+    return res.status(400).json({ message: 'Invalid categoty ID.' });
   }
   try {
     const category = await Category.findByPk(req.params.id,{
@@ -52,7 +52,7 @@ router.put('/:id', async (req, res) => {
   // update a category by its `id` value
     // Check if the id parameter contains only numeric characters
     if (!/^\d+$/.test(req.params.id)) {
-      return res.status(400).json({ message: 'Invalid product ID.' });
+      return res.status(400).json({ message: 'Invalid categoty ID.' });
     }
   try {
     const upCat = await  Category.update(req.body,{
@@ -62,6 +62,7 @@ router.put('/:id', async (req, res) => {
       res.status(404).json({message: 'Category not found'});
       return;
     }
+    // refreshing entity relationships
     await Product.update({
       category_id: req.params.id
     }, {where: {category_id: req.params.id}},);
@@ -75,7 +76,7 @@ router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
     // Check if the id parameter contains only numeric characters
     if (!/^\d+$/.test(req.params.id)) {
-      return res.status(400).json({ message: 'Invalid product ID.' });
+      return res.status(400).json({ message: 'Invalid categoty ID.' });
     }
   try {
     const delCat = await Category.destroy({
