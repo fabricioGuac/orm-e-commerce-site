@@ -14,7 +14,7 @@ To use this project, create a .env file in the root directory with your PostgreS
 
 ## Walkthrough video
 
-[Click here to go to a walkthrough video]()
+[Click here to go to a walkthrough video](https://drive.google.com/file/d/1U4vfXULyqnToAuesidZFPH3-Im4-agKF/view)
 
 
 ## Credits

@@ -41,7 +41,8 @@ Product.init(
       references:{
         model:Category,
         key:'id',
-      },
+      },  
+      onDelete: 'SET NULL',
     },
   },
   {
